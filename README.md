@@ -41,7 +41,7 @@
     }
 
     .message {
-      display: none;
+      display: none; /* แก้จาก hidden เป็น display:none ตรงๆ */
       background: #fff8f0;
       padding: 20px;
       border-radius: 15px;
@@ -66,8 +66,6 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    .hidden { display: none; }
   </style>
 </head>
 <body>
@@ -78,8 +76,8 @@
   </div>
 
   <!-- ข้อความอวยพร -->
-  <div class="message hidden" id="message">
-    <h2>💐 สุขสันต์วันเกิดครับ 💐</h2>
+  <div class="message" id="message">
+    <h2>💐 สุขสันต์วันเกิดคุณแม่ 💐</h2>
     <p>ขอให้คุณแม่มีความสุขมาก ๆ<br>
     สุขภาพแข็งแรง 💖<br>
     และมีรอยยิ้มทุก ๆ วัน เงินทองไหลมาเทมา 🌸🎂🎁</p>
@@ -88,6 +86,7 @@
   <!-- เพลง -->
   <audio id="bg-music" loop>
     <source src="happy_birthday.mp3" type="audio/mpeg">
+    เบราว์เซอร์ของคุณไม่รองรับการเล่นเพลง
   </audio>
 
   <script>
@@ -101,8 +100,9 @@
       flap.style.transform = "rotateX(-180deg)";
       setTimeout(() => {
         envelope.style.display = "none"; // ซ่อนซอง
-        message.style.display = "block"; // แสดงข้อความ
-        music.play(); // เล่นเพลง
+        message.style.display = "block";  // แสดงข้อความ
+        music.currentTime = 0;            // เริ่มเพลงตั้งแต่ต้น
+        music.play().catch(err => console.log("เล่นเพลงไม่สำเร็จ:", err));
       }, 600);
     });
   </script>

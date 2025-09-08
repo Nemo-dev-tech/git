@@ -16,7 +16,6 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: hidden;
     }
 
     .envelope {
@@ -27,7 +26,6 @@
       border-radius: 10px;
       cursor: pointer;
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      transition: transform 0.4s ease;
     }
 
     .flap {
@@ -49,6 +47,7 @@
       border-radius: 15px;
       text-align: center;
       box-shadow: 0 8px 20px rgba(255, 153, 102, 0.4);
+      max-width: 350px;
       animation: fadeIn 1s ease forwards;
     }
 
@@ -78,12 +77,12 @@
     <div class="flap" id="flap"></div>
   </div>
 
-  <!-- ข้อความ -->
+  <!-- ข้อความอวยพร -->
   <div class="message hidden" id="message">
-    <h2>💐 สุขสันต์วันเกิดคุณแม่ 💐</h2>
-    <p>ขอให้คุณแม่มีสุขภาพแข็งแรง 💖  
-    มีรอยยิ้มและความสุขในทุก ๆ วัน 🌸  
-    รักแม่ที่สุดเลยค่ะ 🎂🎁</p>
+    <h2>💐 สุขสันต์วันเกิดครับ 💐</h2>
+    <p>ขอให้คุณแม่มีความสุขมาก ๆ<br>
+    สุขภาพแข็งแรง 💖<br>
+    และมีรอยยิ้มทุก ๆ วัน เงินทองไหลมาเทมา 🌸🎂🎁</p>
   </div>
 
   <!-- เพลง -->
@@ -98,11 +97,12 @@
     const music = document.getElementById("bg-music");
 
     envelope.addEventListener("click", () => {
+      // เปิดปีกซอง
       flap.style.transform = "rotateX(-180deg)";
       setTimeout(() => {
-        envelope.style.display = "none";
-        message.classList.remove("hidden");
-        music.play(); // เล่นเพลงเมื่อเปิดซอง
+        envelope.style.display = "none"; // ซ่อนซอง
+        message.style.display = "block"; // แสดงข้อความ
+        music.play(); // เล่นเพลง
       }, 600);
     });
   </script>
